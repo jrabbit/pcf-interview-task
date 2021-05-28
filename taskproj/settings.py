@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fux!h!9c$9z^$$80a&4o@qpi*mi5z@83!&eo@_^&e)jug#p57l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["drcat.local"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "ajaxer"
 ]
 
 MIDDLEWARE = [
