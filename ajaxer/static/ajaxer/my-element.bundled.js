@@ -1,0 +1,1 @@
+../../../front/my-element.bundled.js

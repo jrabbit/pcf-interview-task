@@ -2,6 +2,7 @@
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
+ * derived from https://github.com/PolymerLabs/lit-element-starter-js
  */
 
 import summary from 'rollup-plugin-summary';

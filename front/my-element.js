@@ -1,18 +1,12 @@
-/**
- * @license
- * Copyright 2019 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
 import {LitElement, html, css} from 'lit';
 
 /**
  * An example element.
- *
+ * skeleton from https://github.com/PolymerLabs/lit-element-starter-js
  * @slot - This element has a slot
  * @csspart button - The button
  */
-export class MyElement extends LitElement {
+export class SubscribeMatic extends LitElement {
   static get styles() {
     return css`
       :host {
@@ -55,8 +49,9 @@ export class MyElement extends LitElement {
   }
 
   _onClick() {
+    /* do the ajax dance here */
     this.count++;
   }
 }
 
-window.customElements.define('my-element', MyElement);
+window.customElements.define('subscribe-matic', SubscribeMatic);
