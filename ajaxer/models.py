@@ -1,6 +1,6 @@
 from django.db import models
 
-class Subscribtion(models.Model):
+class Subscription(models.Model):
     customer_name = models.CharField(max_length=256)
     email = models.EmailField()
     class SubType(models.TextChoices):
