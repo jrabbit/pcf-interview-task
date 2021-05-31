@@ -1,0 +1,16 @@
+{% load static %}
+<html>
+<head>
+<title>pcf ajax demo</title>
+<script type="module" src="{% static 'front/my-element.bundled.js' %}"></script>
+</head>
+<body>
+
+<h1>Subscription-O-Matic</h1>
+<subscription-matic></subscription-matic>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
