@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit'
+import {query} from 'lit/decorators/query.js';
 
 function getCookie (name) {
   let cookieValue = null
@@ -23,6 +24,9 @@ function getCookie (name) {
  * @csspart button - The button
  */
 export class SubscribeMatic extends LitElement {
+  @query("form")
+  _form;
+
   static get styles () {
     return css`
       :host {
@@ -50,34 +54,44 @@ export class SubscribeMatic extends LitElement {
 
   constructor () {
     super()
-    this.name = 'World'
-    this.count = 0
   }
 
   // https://lit.dev/docs/templates/lists/
   render () {
     return html`
-      <h1>Hello, ${this.name}!</h1>
-      <button @click=${this._onClick} part="button">
-        Click Count: ${this.count}
-      </button>
       <form>
       <input name="name" required></input>
       <input type="email" required></input>
-      <select name="subscription_type" required>
-        <option>Free</option>
-        <option>Plus</option>
-        <option>Pro</option>
+      <label for="sub_type">Type</label>
+      <select id="sub_type" name="subscription_type" required>
+        <option value="free">Free</option>
+        <option value="plus" selected>Plus</option>
+        <option value="pro">Pro</option>
       </select>
-        <input type="submit" value="add">
       </form>
+      <button @click=${this._onClick} part="button">Add</button>
       <slot></slot>
     `
   }
 
   _onClick () {
     /* do the ajax dance here */
-    this.count++
+    const data = this.serializeJSON(this._form)
+    const csrftoken = getCookie('csrftoken')
+    const request = new Request(
+      '/ajax-target',
+      { headers: { 'X-CSRFToken': csrftoken } }
+    )
+    fetch(request, {
+      method: 'POST',
+      mode: 'same-origin', // Do not send CSRF token to another domain.
+      body: data,
+    }).then(function (response) {
+        console.log(response)
+        // update visible list
+        newItem = 
+        this._list.appendChild(newItem)
+    })
   }
 
   // ref from https://kbarker.dev/blog/serialize-form-data-into-a-json-string-in-vanilla-js
@@ -99,7 +113,7 @@ export class SubscribeMatic extends LitElement {
 
   // end contrib
   _add_row () {
-    const csrftoken = Cookies.get('csrftoken')
+    const csrftoken = getCookie('csrftoken')
     const request = new Request(
       '/ajax-target',
       { headers: { 'X-CSRFToken': csrftoken } }

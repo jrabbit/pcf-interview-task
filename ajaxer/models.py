@@ -10,4 +10,4 @@ class Subscription(models.Model):
     sub_type = models.CharField(choices=SubType.choices, max_length=4)
 
     def __str__(self):
-        return f"{self.customer_name}'s {self.sub_type} subscription'"
+        return f"{self.customer_name}'s {self.sub_type} subscription"

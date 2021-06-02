@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from ajaxer.views import SubscriptionHome, WebHome
+from ajaxer.views import SubscriptionHome, WebHome, ajax_intake
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', WebHome.as_view(), name="home"),
     path('subs', SubscriptionHome.as_view(), name='sub-list'),
+    path('ajax-target', ajax_intake, name='json-intake'),
     # path('new', SubscriptionCreate.as_view(), name='sub-create'),
 ]
