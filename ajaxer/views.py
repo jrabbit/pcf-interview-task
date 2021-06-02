@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic import CreateView, TemplateView
@@ -12,6 +13,12 @@ class WebHome(TemplateView):
 class SubscriptionHome(ListView):
     model = Subscription
 
-@method_decorator(csrf_exempt, name="dispatch")
-class SubscriptionCreate(CreateView):
-    model = Subscription
+def ajax_intake(request):
+    parsed = json.loads(request.body)
+    s = Subscription()
+    s.save()
+    return "OK"
+
+# @method_decorator(csrf_exempt, name="dispatch")
+# class SubscriptionCreate(CreateView):
+    # model = Subscription
