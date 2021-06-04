@@ -23,5 +23,4 @@ urlpatterns = [
     path('', WebHome.as_view(), name="home"),
     path('subs', SubscriptionHome.as_view(), name='sub-list'),
     path('ajax-target', ajax_intake, name='json-intake'),
-    # path('new', SubscriptionCreate.as_view(), name='sub-create'),
 ]

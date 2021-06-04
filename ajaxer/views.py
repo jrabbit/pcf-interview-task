@@ -1,9 +1,10 @@
 import json
 import logging
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.list import ListView
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -30,7 +31,3 @@ def ajax_intake(request):
     s.save()
     print(s)
     return HttpResponse("OK")
-
-# @method_decorator(csrf_exempt, name="dispatch")
-# class SubscriptionCreate(CreateView):
-    # model = Subscription
