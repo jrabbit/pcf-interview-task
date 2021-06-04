@@ -37,7 +37,7 @@ function ut(t,i){return(({finisher:t,descriptor:i})=>(e,r)=>{var s;if(void 0===r
 ${this.subs.map((t=>W`<li> ${t.name}'s ${t.subscription_type} subscription</li>`))}
       </ul>
       <form>
-      <input name="name" required></input>
+      <input name="name" minlength=1 required></input>
       <input name="email" type="email" required></input>
       <label for="sub_type">Type</label>
       <select id="sub_type" name="subscription_type" required>
@@ -47,4 +47,4 @@ ${this.subs.map((t=>W`<li> ${t.name}'s ${t.subscription_type} subscription</li>`
       </select>
       </form>
       <button @click=${this._onClick} part="button">Add</button>
-    `}},{kind:"method",key:"_onClick",value:function(){const t=this.serialize(this._form);if(""===t.name)return;if(""===t.email)return;const i=JSON.stringify(t),e=function(t){let i=null;if(document.cookie&&""!==document.cookie){const e=document.cookie.split(";");for(let r=0;r<e.length;r++){const s=e[r].trim();if(s.substring(0,t.length+1)===t+"="){i=decodeURIComponent(s.substring(t.length+1));break}}}return i}("csrftoken"),r=new Request("/ajax-target",{headers:{"X-CSRFToken":e}});fetch(r,{method:"POST",mode:"same-origin",body:i}).then((i=>{this.subs.push(t),this.update()}))}},{kind:"method",key:"serialize",value:function(t){const i=new FormData(t),e={};for(const[t,r]of i)e[t]=r;return e}}]}}),ct);window.customElements.define("subscribe-matic",vt);export{vt as SubscribeMatic};
+    `}},{kind:"method",key:"_onClick",value:function(){if(1!=this._form.checkValidity())return;const t=this.serialize(this._form);if(""===t.name)return;const i=JSON.stringify(t),e=function(t){let i=null;if(document.cookie&&""!==document.cookie){const e=document.cookie.split(";");for(let r=0;r<e.length;r++){const s=e[r].trim();if(s.substring(0,t.length+1)===t+"="){i=decodeURIComponent(s.substring(t.length+1));break}}}return i}("csrftoken"),r=new Request("/ajax-target",{headers:{"X-CSRFToken":e}});fetch(r,{method:"POST",mode:"same-origin",body:i}).then((i=>{this.subs.push(t),this.update()}))}},{kind:"method",key:"serialize",value:function(t){const i=new FormData(t),e={};for(const[t,r]of i)e[t]=r;return e}}]}}),ct);window.customElements.define("subscribe-matic",vt);export{vt as SubscribeMatic};

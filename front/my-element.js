@@ -35,7 +35,7 @@ export class SubscribeMatic extends LitElement {
 ${this.subs.map((sub) => html`<li> ${sub.name}'s ${sub.subscription_type} subscription</li>`)}
       </ul>
       <form>
-      <input name="name" required></input>
+      <input name="name" minlength=1 required></input>
       <input name="email" type="email" required></input>
       <label for="sub_type">Type</label>
       <select id="sub_type" name="subscription_type" required>
@@ -50,12 +50,12 @@ ${this.subs.map((sub) => html`<li> ${sub.name}'s ${sub.subscription_type} subscr
 
   _onClick () {
     /* do the ajax dance here */
+    if (this._form.checkValidity() != true){
+        return
+    }
     const data = this.serialize(this._form)
     // slightly validate
     if (data["name"] === ""){
-        return
-    }
-    if (data["email"] === ""){
         return
     }
     const wireData = JSON.stringify(data)
