@@ -8,4 +8,6 @@ backend:
 
 `poetry run python manage.py migrate`
 
+`poetry run python manage.py collectstatic`
+
 `poetry run python manage.py runserver`
