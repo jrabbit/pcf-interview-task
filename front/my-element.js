@@ -25,21 +25,6 @@ export class SubscribeMatic extends LitElement {
   @query('ul')
   _list;
 
-  static get styles () {
-    return css`
-      :host {
-        display: block;
-        border: solid 1px gray;
-        padding: 16px;
-        max-width: 800px;
-      }
-      
-    `
-  }
-
-  // constructor () {
-  // super()
-  // }
 
   @property() subs = []
   // https://lit.dev/docs/templates/lists/
@@ -66,6 +51,13 @@ ${this.subs.map((sub) => html`<li> ${sub.name}'s ${sub.subscription_type} subscr
   _onClick () {
     /* do the ajax dance here */
     const data = this.serialize(this._form)
+    // slightly validate
+    if (data["name"] === ""){
+        return
+    }
+    if (data["email"] === ""){
+        return
+    }
     const wireData = JSON.stringify(data)
     const csrftoken = getCookie('csrftoken')
     const request = new Request(
@@ -77,7 +69,7 @@ ${this.subs.map((sub) => html`<li> ${sub.name}'s ${sub.subscription_type} subscr
       mode: 'same-origin', // Do not send CSRF token to another domain.
       body: wireData
     }).then((response) => {
-      console.log(response)
+      //console.log(response)
       // update visible list
       this.subs.push(data)
       this.update()
