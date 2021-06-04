@@ -14,6 +14,7 @@ from .models import Subscription
 class WebHome(TemplateView):
     template_name = "index.html"
 
+@method_decorator(ensure_csrf_cookie, name="dispatch")
 class SubscriptionHome(ListView):
     model = Subscription
 
@@ -21,8 +22,13 @@ class SubscriptionHome(ListView):
 def ajax_intake(request):
     logging.info("got data")
     parsed = json.loads(request.body)
+    # print(parsed)
     s = Subscription()
+    s.customer_name = parsed["name"]
+    s.email = parsed["email"]
+    s.sub_type = parsed["subscription_type"]
     s.save()
+    print(s)
     return HttpResponse("OK")
 
 # @method_decorator(csrf_exempt, name="dispatch")

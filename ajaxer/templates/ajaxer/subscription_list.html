@@ -1,9 +1,16 @@
+{% load static %}
 <html>
 <body>
-<ul>
+<title>pcf ajax demo</title>
+<script type="module" src="{% static 'ajaxer/my-element.bundled.js' %}"></script>
+</head>
+<body>
+
+<h1>Subscription-O-Matic</h1>
+<subscribe-matic>
 {% for sub in object_list %}
-    <li>{{sub}}</li>
+<li class="django-side">{{sub}}</li>
 {% endfor %}
-</ul>
+</subscribe-matic>
 </body>
 </html>
